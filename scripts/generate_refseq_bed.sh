@@ -1,5 +1,5 @@
 #!/bin/bash
-# Author: [Your Name]
+# Author: Kai-Di Yang
 # Date: 2025-05-08
 # Purpose: Generate UCSC-style BED file (gene, exon, CDS) from NCBI RefSeq GTF
 # Usage:
