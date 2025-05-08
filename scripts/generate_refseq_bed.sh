@@ -1,18 +1,19 @@
 #!/bin/bash
-# Author: Kai-Di Yang
+# Author: [Your Name]
 # Date: 2025-05-08
-# Purpose: Generate UCSC-style BED file (gene, exon, or CDS) from NCBI RefSeq GTF
+# Purpose: Generate UCSC-style BED file (gene, exon, CDS) from NCBI RefSeq GTF
 # Usage:
-#   ./generate_refseq_bed.sh --build hg19 --feature CDS --output cds_hg19.bed
+#   ./generate_refseq_bed.sh --build hg19 --feature CDS --output cds_hg19.bed [--select-only]
 
 # ========== Argument Parsing ==========
 BUILD=""
 FEATURE=""
 OUTPUT=""
+SELECT_ONLY="false"
 OUTDIR="output"
 
 print_usage() {
-    echo "Usage: $0 --build [hg19|hg38] --feature [gene|exon|CDS] --output output_file.bed"
+    echo "Usage: $0 --build [hg19|hg38] --feature [gene|exon|CDS] --output output.bed [--select-only]"
     exit 1
 }
 
@@ -30,6 +31,10 @@ while [[ $# -gt 0 ]]; do
         -o|--output)
             OUTPUT="$2"
             shift 2
+            ;;
+        -s|--select-only)
+            SELECT_ONLY="true"
+            shift
             ;;
         -h|--help)
             print_usage
@@ -93,12 +98,15 @@ else
     echo "GTF already exists: $GTF_FILE"
 fi
 
-# ========== Step 2: Extract Features to Temporary BED ==========
+# ========== Step 2: Extract Features to BED ==========
 BED_TMP="$OUTDIR/temp_${FEATURE}.bed"
-echo "Extracting feature: $FEATURE..."
+echo "Extracting feature: $FEATURE (RefSeq Select = $SELECT_ONLY)..."
 
 zcat "$GTF_FILE" \
-| awk -v feature="$FEATURE" '$3 == feature' \
+| awk -v feature="$FEATURE" -v select="$SELECT_ONLY" '$3 == feature {
+    if (select == "true" && $0 !~ /tag "RefSeq Select"/) next;
+    print $0;
+}' \
 | awk -F '\t' -v feat="$FEATURE" 'BEGIN{OFS="\t"} {
     gene="."; transcript="."; exon=".";
     split($9, attrs, ";");
