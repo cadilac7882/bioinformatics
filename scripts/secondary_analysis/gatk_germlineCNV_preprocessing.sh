@@ -15,8 +15,8 @@ FAI="${REFERENCE}.fai"
 
 # Output names
 TMP_INTERVALS="hg19.preprocessed.tmp.interval_list"
-PROCESSED_INTERVALS="hg19.processed.interval_list"
-ANNOTATED_OUTPUT="hg19.annotated.tsv"
+PROCESSED_INTERVALS="test2_hg19.processed.interval_list"
+ANNOTATED_OUTPUT="test2_hg19.annotated.tsv"
 
 #------------------------------------------------------------#
 # Step 1: Generate intervals (padding = 0 for WGS)
@@ -37,7 +37,7 @@ awk '$1 ~ /^@|chr([1-9]|1[0-9]|2[0-2]|X|Y)$/' $TMP_INTERVALS > $PROCESSED_INTERV
 #------------------------------------------------------------#
 
 # 2.1 Segmental duplication BED file
-SEGDUP_BED="hg19.nochr.SegDups.elements.no_gl.bed"
+SEGDUP_BED="test2_hg19.nochr.SegDups.elements.no_gl.bed"
 
 if [[ ! -f $SEGDUP_BED ]]; then
     echo "Downloading segmental duplication BED"
@@ -50,7 +50,7 @@ else
 fi
 
 # 2.2 Mappability BED file
-MAPPABILITY_BED="test_hg19.nochr.k100.umap.single.merged.bed"
+MAPPABILITY_BED="test2_hg19.nochr.k100.umap.single.merged.bed"
 
 if [[ ! -f $MAPPABILITY_BED ]]; then
     echo "Downloading mappability BED"
