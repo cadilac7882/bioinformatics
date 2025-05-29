@@ -19,7 +19,7 @@ PROCESSED_INTERVALS="test2_hg19.processed.interval_list"
 ANNOTATED_OUTPUT="test2_hg19.annotated.tsv"
 
 #------------------------------------------------------------#
-# Step 1: Generate intervals (padding = 0 for WGS)
+# Step 1: Generate intervals (padding = 0 for WGS, 250 for WES)
 #------------------------------------------------------------#
 echo "Step 1: Preprocess intervals"
 
