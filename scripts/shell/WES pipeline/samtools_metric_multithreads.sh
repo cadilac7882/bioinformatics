@@ -57,16 +57,16 @@ total_PF_reads=$(samtools view  -F 0x100 -c ${inputBam} --threads 8)
 echo "Total reads:\t" ${total_PF_reads} >> ${result}
 
 duplicated_reads=$(samtools view -f 0x400 -c ${inputBam} --threads 8)
-duplicated_rate=$(awk -v total_reads=$total_PF_reads -v duplicated_reads=$duplicated_reads 'BEGIN{printf("%.2f%",duplicated_reads/total_reads*100)}')
+duplicated_rate=$(awk -v total_reads=$total_PF_reads -v duplicated_reads=$duplicated_reads 'BEGIN{printf("%.2f%%",duplicated_reads/total_reads*100)}')
 echo "Duplicated rate:\t" ${duplicated_rate} >> ${result}
 
 # exclude 0x100 (secondary alignment) and 0x4 (read unmapped)
 mapped_reads=$(samtools view -F 0x100 -F 0x4 -c ${inputBam} --threads 8)
-mapping_rate=$(awk -v total_reads=$total_PF_reads -v mapped_reads=$mapped_reads 'BEGIN{printf("%.2f%",mapped_reads/total_reads*100)}')
+mapping_rate=$(awk -v total_reads=$total_PF_reads -v mapped_reads=$mapped_reads 'BEGIN{printf("%.2f%%",mapped_reads/total_reads*100)}')
 echo "Mapping rate:\t" ${mapping_rate} >> ${result}
 
 on_target_reads=$(samtools view -F 0x100 -F 0x4 -L ${targetBed} -c ${inputBam} --threads 8)
-on_target_rate=$(awk -v total_reads=$total_PF_reads -v on_target_reads=$on_target_reads 'BEGIN{printf("%.2f%",on_target_reads/total_reads*100)}')
+on_target_rate=$(awk -v total_reads=$total_PF_reads -v on_target_reads=$on_target_reads 'BEGIN{printf("%.2f%%",on_target_reads/total_reads*100)}')
 echo "On target rate:\t" $on_target_rate >> ${result}
 
 mean_depth=$(awk '{sum+=$3}END{printf("%.2f\n",sum/NR)}' ${resultDir}/mybam.depth)
@@ -74,7 +74,7 @@ echo "Mean depth:\t" $mean_depth >> ${result}
 
 target_bases=$(awk '{sum+=($3-$2)}END{print sum}' ${targetBed})
 
-uniformity=$(awk -v mean_depth=$mean_depth -v target_bases=$target_bases '{if($3>=mean_depth*0.2){cnt++}}END{printf("%.2f%\n", cnt/target_bases*100)}' ${resultDir}/mybam.depth)
+uniformity=$(awk -v mean_depth=$mean_depth -v target_bases=$target_bases '{if($3>=mean_depth*0.2){cnt++}}END{printf("%.2f%%\n", cnt/target_bases*100)}' ${resultDir}/mybam.depth)
 echo "Uniformity:\t" ${uniformity} >> ${result}
 
 echo "complete!"

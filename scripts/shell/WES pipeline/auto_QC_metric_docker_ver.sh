@@ -17,6 +17,8 @@ do
 	minutes=$( echo "($runtime % 3600) / 60" |bc)
 	seconds=$( echo "($runtime % 3600) % 60" |bc)
 	LC_NUMERIC=C printf "Runtime: %dh:%dm:%.3fs\n" $hours $minutes $seconds
+	
+	gzip ${sample}/mybam.depth
 
 done
 

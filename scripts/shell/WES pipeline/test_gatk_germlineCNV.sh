@@ -2,8 +2,6 @@
 ref_dir=/purestorage/gene/Ref/hg19
 sampleList=$(cat sampleList.txt) 
 
-
-
 ## step1: collect read counts from bam file
 tmp_input_config=""
 mkdir readCounts
@@ -33,7 +31,6 @@ sudo nerdctl run --rm -v $(pwd):/outdir -v ${ref_dir}:/workdir broadinstitute/ga
 	-imr OVERLAPPING_ONLY \
 	-O /outdir/nextera-dna-targeted-regions-processed.cohort.GC.Mappability.SegDup.filtered.interval_list"
 
-
 ## step3: determine contig ploidy
 mkdir contigPloidy
 chmod 775 contigPloidy
@@ -47,9 +44,6 @@ sudo nerdctl run --rm -v $(pwd):/outdir -v ${ref_dir}:/workdir broadinstitute/ga
 	--output-prefix ploidy \
 	--verbosity DEBUG"
 
-
-
-
 ## step4: call CNV
 mkdir gCNV_call
 chmod 775 gCNV_call
@@ -57,6 +51,7 @@ sudo nerdctl run --rm -v $(pwd):/outdir -v ${ref_dir}:/workdir broadinstitute/ga
 	sh -c "gatk GermlineCNVCaller --run-mode COHORT \
 			-L /outdir/nextera-dna-targeted-regions-processed.cohort.GC.Mappability.SegDup.filtered.interval_list \
 			${tmp_input_config} \
+			--annotated-intervals /workdir/nextera-dna-targeted-regions-processed.annotated.tsv \
 			--contig-ploidy-calls /outdir/contigPloidy/ploidy-calls \
 			--interval-merging-rule OVERLAPPING_ONLY \
 			--output /outdir/gCNV_call \
