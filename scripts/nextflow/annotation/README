@@ -1,0 +1,2 @@
+## run with the following command
+nextflow run run_annotation.nf --input_vcf [vcf_file] --output_dir [output_dir]

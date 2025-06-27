@@ -1,0 +1,2 @@
+## run with the following command
+nextflow run best_practice_cpu.nf

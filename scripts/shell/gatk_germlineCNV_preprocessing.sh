@@ -37,7 +37,7 @@ awk '$1 ~ /^@|chr([1-9]|1[0-9]|2[0-2]|X|Y)$/' $TMP_INTERVALS > $PROCESSED_INTERV
 #------------------------------------------------------------#
 
 # 2.1 Segmental duplication BED file
-SEGDUP_BED="test2_hg19.nochr.SegDups.elements.no_gl.bed"
+SEGDUP_BED="hg19.nochr.SegDups.elements.no_gl.bed"
 
 if [[ ! -f $SEGDUP_BED ]]; then
     echo "Downloading segmental duplication BED"
@@ -50,7 +50,7 @@ else
 fi
 
 # 2.2 Mappability BED file
-MAPPABILITY_BED="test2_hg19.nochr.k100.umap.single.merged.bed"
+MAPPABILITY_BED="hg19.nochr.k100.umap.single.merged.bed"
 
 if [[ ! -f $MAPPABILITY_BED ]]; then
     echo "Downloading mappability BED"
