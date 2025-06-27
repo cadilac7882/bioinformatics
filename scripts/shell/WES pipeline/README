@@ -41,6 +41,18 @@ Purpose:
 Run GATK germline CNV caller (cohort mode)
 #==========================================================================
 File:
+merge_contig_ploidy.sh
+
+Purpose:
+merge the contig ploidies predicted by GATK gCNV
+#==========================================================================
+File:
+mosdetph_cds.sh
+
+Purpose:
+Evaluate exon-level metrics by mosdepth
+#==========================================================================
+File:
 trim.sh
 
 Purpose:
