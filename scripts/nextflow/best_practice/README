@@ -1,7 +1,7 @@
 #--------------------------------------
 # build docker through Dockerfile
 #--------------------------------------
-docker build -t dgm/secondary_analysis_toolkits:1.0
+docker build -t dgm/secondary_analysis_toolkits:1.0 .
 
 #--------------------------------------
 # run with the nextflow
