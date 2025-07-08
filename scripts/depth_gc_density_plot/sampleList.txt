@@ -1,0 +1,1 @@
+25NGSA	/datalake_Intermediate/NextSeq2000/250326_VH00815_68_AACMMFLHV/25NGS-01_S29/nv_result/25NGS-01_S29_gpu.bam
