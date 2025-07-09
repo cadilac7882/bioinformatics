@@ -44,7 +44,7 @@ BEGIN{OFS="\t"; prev_chr=""; prev_start=-1; prev_end=-1; prev_line=""; prev_name
       prev_line = merged_line;
       # prev_name remains the same as the former window
     } else {
-      # If it's the first small window of a chromosome, buffer it
+      # If it is the first small window of a chromosome, buffer it
       prev_chr = chr;
       prev_start = start;
       prev_end = end;
