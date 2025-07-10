@@ -1,7 +1,9 @@
 ## Build hap.py image through Dockerfile
 
-`## assume Dockerfile is downloaded in the current folder.`
-`docker build -t dgm/hap.py .`
+```
+## assume Dockerfile is downloaded in the current folder.
+docker build -t dgm/hap.py .
+```
 ---
 
 ## Compare somatic variant calling 
