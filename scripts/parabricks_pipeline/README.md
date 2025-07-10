@@ -1,16 +1,13 @@
-# ---------------------------------------------------------------------
-File:
-automation_full.sh
-
+### `automation_full.sh`
 Purpose:
 Conduct GPU-based secondary analytic pipeline (from fastq to vcf), and quality estimation
-# ---------------------------------------------------------------------
+---
 File:
 archive_fastq.sh
 
 Purpose: 
 Archive the fastq.gz files in "fastq" folder based on sampleList.txt
-# ---------------------------------------------------------------------
+---
 File:
 auto_mapq_docker_ver.sh (wrapper)
 testMapQuality.sh (single thread)
@@ -18,14 +15,14 @@ testMapQuality_multithreads.sh (multi-threads)
 
 Purpose:
 Estimate the mapping quality within target regions of each bam file
-# ---------------------------------------------------------------------
+---
 File:
 auto_QC_metric_docker_ver.sh (wrapper)
 samtools_metric_multithreads.sh (multi-threads)
 
 Purpose:
 Estimate bam metrics within target region of each bam file
-# ---------------------------------------------------------------------
+---
 File:
 nv_run_docker_ver.sh (hg19, germline)
 nv_run_docker_ver_hg38.sh (hg38, germline)
@@ -33,37 +30,37 @@ nv_run_docker_ver_somatic.sh (somatic)
 
 Purpose:
 Secondray analysis (alignment+variant calling) using parabricks
-# ---------------------------------------------------------------------
+---
 File:
 hardfiltering_docker_ver.sh
 
 Purpose:
 Hardfilering-based variant filtration using GATK
-# ---------------------------------------------------------------------
+---
 File:
 test_gatk_germlineCNV.sh
 
 Purpose:
 Run GATK germline CNV caller (cohort mode)
-# ---------------------------------------------------------------------
+---
 File:
 merge_contig_ploidy.sh
 
 Purpose:
 merge the contig ploidies predicted by GATK gCNV
-# ---------------------------------------------------------------------
+---
 File:
 mosdetph_cds.sh
 
 Purpose:
 Evaluate exon-level metrics by mosdepth
-# ---------------------------------------------------------------------
+---
 File:
 trim.sh
 
 Purpose:
 Trim raw fastq with trimmomatic
-# ---------------------------------------------------------------------
+---
 File:
 whatshap.sh
 
