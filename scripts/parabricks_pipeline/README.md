@@ -1,74 +1,132 @@
-### `automation_full.sh`
-Purpose:
-Conduct GPU-based secondary analytic pipeline (from fastq to vcf), and quality estimation
 ---
-File:
-archive_fastq.sh
 
-Purpose: 
-Archive the fastq.gz files in "fastq" folder based on sampleList.txt
+# 🧬 Secondary Analysis Pipeline (GPU-based, Dockerized)
+
+This repository includes scripts for performing secondary analysis (from FASTQ to VCF), quality control, and downstream genomic evaluations. The pipeline is designed to run in a Docker environment and is GPU-accelerated (Parabricks), where applicable.
+
 ---
-File:
-auto_mapq_docker_ver.sh (wrapper)
-testMapQuality.sh (single thread)
-testMapQuality_multithreads.sh (multi-threads)
 
-Purpose:
-Estimate the mapping quality within target regions of each bam file
+## 📁 Pipeline Overview
+
+### 🔄 `automation_full.sh`
+
+* **Purpose**:
+  Full automation of the secondary analysis pipeline. Includes:
+
+  * FASTQ trimming
+  * Alignment
+  * Variant calling
+  * Basic quality control metrics
+* **Notes**: GPU-based; requires Parabricks
+
 ---
-File:
-auto_QC_metric_docker_ver.sh (wrapper)
-samtools_metric_multithreads.sh (multi-threads)
 
-Purpose:
-Estimate bam metrics within target region of each bam file
+## 📁 FASTQ Management
+
+### 📦 `archive_fastq.sh`
+
+* **Purpose**:
+  Archive `*.fastq.gz` files located in the `fastq/` folder based on `sampleList.txt`.
+
 ---
-File:
-nv_run_docker_ver.sh (hg19, germline)
-nv_run_docker_ver_hg38.sh (hg38, germline)
-nv_run_docker_ver_somatic.sh (somatic)
 
-Purpose:
-Secondray analysis (alignment+variant calling) using parabricks
+## 🧪 Mapping Quality Evaluation
+
+### 🧾 `auto_mapq_docker_ver.sh` *(wrapper)*
+
+### 🧾 `testMapQuality.sh` *(single-thread)*
+
+### 🧾 `testMapQuality_multithreads.sh` *(multi-threaded)*
+
+* **Purpose**:
+  Estimate mapping quality in **target regions** for each BAM file.
+
 ---
-File:
-hardfiltering_docker_ver.sh
 
-Purpose:
-Hardfilering-based variant filtration using GATK
+## 📊 BAM Quality Metrics
+
+### 🧾 `auto_QC_metric_docker_ver.sh` *(wrapper)*
+
+### 🧾 `samtools_metric_multithreads.sh` *(multi-threaded)*
+
+* **Purpose**:
+  Compute alignment statistics (e.g., coverage, duplication rate) using `samtools` and `bed` files.
+
 ---
-File:
-test_gatk_germlineCNV.sh
 
-Purpose:
-Run GATK germline CNV caller (cohort mode)
+## ⚙️ Secondary Analysis with Parabricks
+
+### 🧾 `nv_run_docker_ver.sh`
+
+* **Purpose**: Germline variant calling on **hg19**
+
+### 🧾 `nv_run_docker_ver_hg38.sh`
+
+* **Purpose**: Germline variant calling on **hg38**
+
+### 🧾 `nv_run_docker_ver_somatic.sh`
+
+* **Purpose**: Somatic variant calling pipeline
+* **Toolset**: GPU-accelerated Parabricks (bwa-mem2, HaplotypeCaller/Mutect2)
+
 ---
-File:
-merge_contig_ploidy.sh
 
-Purpose:
-merge the contig ploidies predicted by GATK gCNV
+## 🧼 Variant Filtration
+
+### 🧾 `hardfiltering_docker_ver.sh`
+
+* **Purpose**:
+  Apply **hard-filtering** to VCF files using GATK best-practices.
+
 ---
-File:
-mosdetph_cds.sh
 
-Purpose:
-Evaluate exon-level metrics by mosdepth
+## 🧬 Copy Number Variation (CNV)
+
+### 🧾 `test_gatk_germlineCNV.sh`
+
+* **Purpose**:
+  Run GATK Germline CNV caller in **cohort mode**.
+
+### 🧾 `merge_contig_ploidy.sh`
+
+* **Purpose**:
+  Merge contig-level ploidy results predicted by GATK gCNV model.
+
 ---
-File:
-trim.sh
 
-Purpose:
-Trim raw fastq with trimmomatic
+## 🧬 Exon-Level Coverage
+
+### 🧾 `mosdetph_cds.sh`
+
+* **Purpose**:
+  Compute exon-level depth metrics using `mosdepth` and a BED file of coding exons.
+
 ---
-File:
-whatshap.sh
 
-Purpose:
-Run Phasing with whatshap.
+## ✂️ Preprocessing
 
+### 🧾 `trim.sh`
 
+* **Purpose**:
+  Trim raw FASTQ files using **Trimmomatic**.
 
+---
 
+## 🔗 Phasing
 
+### 🧾 `whatshap.sh`
 
+* **Purpose**:
+  Perform **read-based phasing** using WhatsHap.
+
+---
+
+## 📌 Notes
+
+* All scripts are designed to work with Docker and/or Parabricks environments.
+* Ensure proper volume mapping and input paths when executing scripts.
+* Sample names should match across FASTQ, BAM, and sample list files.
+
+---
+
+若您需要，我可以幫您補上執行範例（例如 command line 範例）、使用說明或將其轉換為 `.md` 檔案。
