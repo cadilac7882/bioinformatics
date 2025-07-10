@@ -1,17 +1,18 @@
-## build hap.py image for benchmarking
+## * Build hap.py image through Dockerfile
 
-### `docker build -t dgm/hap.py .`
-
-
-## compare somatic variant calling 
+`## assume Dockerfile is downloaded in the current folder.
+docker build -t dgm/hap.py .`
 
 
-### `docker run --rm -v $(pwd):/data -w /data dgm/hap.py sh -c "som.py truth.vcf query.vcf -f confident.bed -o output_prefix -r reference.fa"`
+## *Compare somatic variant calling 
 
 
-## compare germline variant calling 
+`docker run --rm -v $(pwd):/data -w /data dgm/hap.py sh -c "som.py truth.vcf query.vcf -f confident.bed -o output_prefix -r reference.fa"`
 
-### `docker run --rm -v $(pwd):/data -w /data dgm/hap.py sh -c "hap.py truth.vcf query.vcf -f confident.bed -o output_prefix -r reference.fa"`
+
+## *Compare germline variant calling 
+
+`docker run --rm -v $(pwd):/data -w /data dgm/hap.py sh -c "hap.py truth.vcf query.vcf -f confident.bed -o output_prefix -r reference.fa"`
 
 
 ### see https://github.com/Illumina/hap.py/tree/master for details.
