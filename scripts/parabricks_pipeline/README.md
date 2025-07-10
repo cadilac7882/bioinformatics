@@ -13,7 +13,6 @@ This repository includes scripts for performing secondary analysis (from FASTQ t
 * **Purpose**:
   Full automation of the secondary analysis pipeline. Includes:
 
-  * FASTQ trimming
   * Alignment
   * Variant calling
   * Basic quality control metrics
@@ -128,5 +127,3 @@ This repository includes scripts for performing secondary analysis (from FASTQ t
 * Sample names should match across FASTQ, BAM, and sample list files.
 
 ---
-
-若您需要，我可以幫您補上執行範例（例如 command line 範例）、使用說明或將其轉換為 `.md` 檔案。
