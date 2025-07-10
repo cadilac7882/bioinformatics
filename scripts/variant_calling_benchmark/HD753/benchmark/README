@@ -1,0 +1,31 @@
+CoA_list.txt
+HD75341130hg19genesdbsnpcosmic.vcf.gz_filter_by_drop_unusual_Bed.vcf
+HD75341130hg19genesdbsnpcosmic.vcf.gz_filter_by_drop_unusual_Bed.vcf.avinput
+HD75341130hg19genesdbsnpcosmic.vcf.gz_filter_by_drop_unusual_Bed.vcf.gz_notinalldifficultregions.vcf
+HD75341130hg19genesdbsnpcosmic.vcf.gz_filter_by_drop_unusual_Bed.vcf.gz.tbi
+
+
+#####################################
+HD753_filter_by_intersect_bed.vcf
+
+resulted from filtering HD75341130hg19genesdbsnpcosmic.vcf.gz by bcftools using TSO500_AGILENT_intersect.bed
+#####################################
+HD753_filter_by_intersect_bed_SNP50.vcf.gz
+HD753_filter_by_intersect_bed_SNP50.vcf.gz.tbi
+
+select SNP with depth >= 50
+####################################
+HD753_filter_by_intersect_bed_indel50_withID.vcf.gz
+HD753_filter_by_intersect_bed_indel50_withID.vcf.gz.tbi
+
+select INDEL with depth >=50
+#####################################
+HD753_filter_by_intersect_bed_processed.vcf.avinput
+HD753_filter_by_intersect_bed_processed.vcf.gz
+HD753_filter_by_intersect_bed_processed.vcf.gz.tbi
+
+combined from HD753_filter_by_intersect_bed_SNP50.vcf.gz and HD753_filter_by_intersect_bed_indel50_withID.vcf.gz
+#####################################
+
+
+
